@@ -127,6 +127,7 @@ public class BaseTest {
     public void loginSuccess(){
         System.out.println("User Logged in Successfully Great!");
         System.out.println("Commit successful");
+        System.out.println("Develop Branch");
     }
 
     @DataProvider
