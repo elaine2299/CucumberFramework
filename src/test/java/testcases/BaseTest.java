@@ -135,7 +135,7 @@ public class BaseTest {
         return new Object[][]{{"testemail1@gmail.com", "Password123!"}};
     }
 
-    @BeforeClass
+    //@BeforeClass
     public void launchApplication() throws IOException {
         driver = browserSetup(driver);
         baseClass = new BaseClass(driver);
@@ -144,7 +144,7 @@ public class BaseTest {
         listener.setDriver(driver);*/
     }
 
-    @AfterClass
+    //@AfterClass
     public void tearDown() throws IOException {
         //getExtentReport();
         /*extentReports.flush();
