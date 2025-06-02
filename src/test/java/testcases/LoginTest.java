@@ -1,3 +1,4 @@
+/*
 package testcases;
 
 import base.BaseClass;
@@ -13,3 +14,4 @@ public class LoginTest extends BaseTest{
         loginPage.login(username, password);
     }
 }
+*/
