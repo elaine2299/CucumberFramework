@@ -56,6 +56,7 @@ public class BaseTest {
         System.out.println("Commit successful");
         System.out.println("Github Webhooks done!");
         System.out.println("Test Success");
+        System.out.println("Test Success, Yay!!");
     }
 
     /*@DataProvider
