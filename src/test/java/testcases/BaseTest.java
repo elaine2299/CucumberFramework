@@ -51,105 +51,27 @@ public class BaseTest {
         return driver;
     }
 
-
-    /*public static ExtentReports extentReport() {
-        String path = System.getProperty("user.dir") + "\\utils\\" + "TestReport.html";
-        System.out.println("The user dir is: " + System.getProperty("user.dir"));
-        ExtentSparkReporter reporter = new ExtentSparkReporter(path);
-        reporter.config().setReportName("Web Automation results");
-        reporter.config().setDocumentTitle("Test Results");
-        extent = new ExtentReports();
-        extent.attachReporter(reporter);
-        return extent;
-    }*/
-
-    public static void getExtentReport() throws IOException {
-        extentReports = new ExtentReports();
-        File file = new File("Extent-Report.html");
-        ExtentSparkReporter sparkReporter = new ExtentSparkReporter(file);
-        extentReports.attachReporter(sparkReporter);
-        String base64Code = captureScreenshot(driver);
-        String path = captureScreenshot("Google.jpg", driver);
-
-        extentReports
-                .createTest("Screenshot 1", " This is the screenshot 1 test")
-                .info("This is an info msg")
-                .addScreenCaptureFromBase64String(base64Code);
-
-
-        extentReports
-                .createTest("Screenshot 2", " This is the screenshot 2 test")
-                .info("This is an info msg")
-                .addScreenCaptureFromBase64String(base64Code, "Test 2 title");
-
-        extentReports
-                .createTest("Screenshot 3", " This is the screenshot 3 test")
-                .info("This is an info msg")
-                .addScreenCaptureFromPath(path, "Test 3");
-    }
-
- /*   public String getScreenshot(String testcaseName, WebDriver driver) throws IOException {
-            TakesScreenshot ts = (TakesScreenshot) driver;
-            File source = ts.getScreenshotAs(OutputType.FILE);
-            File destfile = new File(System.getProperty("user.dir") + "\\utils\\" + testcaseName + ".png");
-            String destFilePath = destfile.getAbsolutePath();
-            FileUtils.copyFile(source, destfile);
-            return destFilePath;
-    }*/
-
-    public static String captureScreenshot(String testcaseName, WebDriver driver) {
-        TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
-        File sourceFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
-        File screenshotDir = new File("./screenshot");
-
-        // Ensure the directory exists
-        if (!screenshotDir.exists()) {
-            screenshotDir.mkdirs();
-        }
-
-        File destFile = new File(screenshotDir, testcaseName);
-        try {
-            FileUtils.copyFile(sourceFile, destFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Screenshot saved successfully");
-        return destFile.getAbsolutePath();
-    }
-
-    public static String captureScreenshot( WebDriver driver) {
-        TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
-        String base64Code = takesScreenshot.getScreenshotAs(OutputType.BASE64);
-        System.out.println("Screenshot saved successfully");
-        return base64Code;
-    }
-
     public void loginSuccess(){
         System.out.println("User Logged in Successfully Great!");
         System.out.println("Commit successful");
         System.out.println("Github Webhooks done!");
+        System.out.println("Test Success");
     }
 
-    @DataProvider
+    /*@DataProvider
     public Object[][] getData() throws IOException {
         return new Object[][]{{"testemail1@gmail.com", "Password123!"}};
-    }
+    }*/
 
     //@BeforeClass
     public void launchApplication() throws IOException {
         driver = browserSetup(driver);
         baseClass = new BaseClass(driver);
         baseClass.getURL(driver);
-        /*listener = new Listener();
-        listener.setDriver(driver);*/
     }
 
     //@AfterClass
     public void tearDown() throws IOException {
-        //getExtentReport();
-        /*extentReports.flush();
-        // Open report before quitting WebDriver
-        Desktop.getDesktop().browse(new File("Extent-Report.html").toURI());*/
         if (driver != null) {
             driver.quit();
         }
